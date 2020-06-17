@@ -1,0 +1,22 @@
+version: "3"
+
+services: 
+    api:
+        build: ./api
+        command: npm run start
+        restart: unless-stopped
+        environment: 
+            - PORT=5000 
+            - HOST=http://realworld.com
+            - MONGO_URL=mongodb://api_db:27017/api
+        ports: 
+            - "3000:3000"
+        depends_on: 
+            - api_db
+    api_db:
+        image: mongo:latest
+        volumes: 
+            - mongo_api:/data/db
+
+volumes: 
+    mongo_api:

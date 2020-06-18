@@ -16,6 +16,7 @@ services:
             - PORT=3001 
             - HOST=http://realworld.com
             - MONGO_URL=mongodb://api_db:27017/api
+            - AUTH_API_URL=http://auth:3002/api
         ports: 
             - "3001:3001"
         depends_on: 
@@ -29,6 +30,8 @@ services:
             - PORT=3002
             - HOST=http://realworld.com
             - MONGO_URL=mongodb://auth_db:27017/auth
+        ports: 
+            - "3002:3002"
         depends_on: 
             - auth_db
     api_db:

@@ -9,6 +9,7 @@ const postSchema = new mongoose.Schema({
 });
 const Post = mongoose.model('Post', postSchema);
 
+app.get('/', (req, res) => res.send('start here with express'))
 app.get('/test', (req, res) => res.send('hello from express'))
 
 const startServer = () => {

@@ -16,11 +16,9 @@ services:
         restart: unless-stopped
         environment: 
             - PORT=3001 
-            - HOST=http://realworld.com
+            # - HOST=http://realworld.com
             - MONGO_URL=mongodb://api_db:27017/api
             - AUTH_API_URL=http://auth:3002/api
-        ports: 
-            - "3001:3001"
         depends_on: 
             - api_db
         networks: 
@@ -32,10 +30,8 @@ services:
         restart: unless-stopped
         environment: 
             - PORT=3002
-            - HOST=http://realworld.com
+            # - HOST=http://realworld.com
             - MONGO_URL=mongodb://auth_db:27017/auth
-        ports: 
-            - "3002:3002"
         depends_on: 
             - auth_db
         networks: 
@@ -63,6 +59,9 @@ services:
             - ./nginx/nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
         depends_on: 
             - frontend
+            - api 
+            - auth
+
         networks: 
             - realworld-docker-network
 
